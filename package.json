@@ -1,0 +1,12 @@
+{
+  "name": "go-rest-api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/main.go",
+  "scripts": {
+    "run": "go run ./src/main.go",
+    "test": "cd src; go test"
+  },
+  "author": "Chugunov Roman",
+  "license": "ISC"
+}
