@@ -8,5 +8,5 @@ My first project on Go. Oh shit...
  - [ ] Auth
  - [ ] Microservice communication through gnatsd
  - [ ] API documentation (auto generate swagger from Go code)
- - [ ] Add reading env
+ - [x] Add reading env
  - [ ] Docker
