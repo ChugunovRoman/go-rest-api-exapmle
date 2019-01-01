@@ -2,9 +2,11 @@
   "name": "go-rest-api",
   "version": "0.0.1",
   "description": "",
-  "main": "src/main.go",
+  "main": "src/index.go",
   "scripts": {
-    "run": "go run ./src/main.go",
+    "run": "go run ./src/index.go",
+    "watch": "gin -p 5001 -a 5000 -t ./src -b index run ./src/index.go",
+    "build": "go build ./src/index.go",
     "test": "cd src; go test"
   },
   "author": "Chugunov Roman",
