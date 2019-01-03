@@ -9,12 +9,12 @@ import (
 type (
 	// Users - model for Users collection
 	Users struct {
-		ID        bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty"`
-		Name      string        `json:"name" bson:"name"`
-		FirstName string        `json:"firstname" bson:"firstname"`
-		Birth     string        `json:"birth" bson:"birth"`
-		Email     string        `json:"email" bson:"email"`
-		CreatedAt time.Time     `json:"createdAt,omitempty" bson:"createdAt,omitempty"`
-		UpdatedAt time.Time     `json:"updatedAt,omitempty" bson:"updatedAt,omitempty"`
+		ID        bson.ObjectId `json:"_id,omitempty" bson:"_id,omitempty" valid:"-"`
+		Name      string        `json:"name" bson:"name" valid:"-"`
+		FirstName string        `json:"firstname" bson:"firstname" valid:"-"`
+		Email     string        `json:"email" bson:"email" valid:"email"`
+		Birth     time.Time     `json:"birth" bson:"birth" valid:"-"`
+		CreatedAt time.Time     `json:"createdAt,omitempty" bson:"createdAt,omitempty" valid:"-"`
+		UpdatedAt time.Time     `json:"updatedAt,omitempty" bson:"updatedAt,omitempty" valid:"-"`
 	}
 )

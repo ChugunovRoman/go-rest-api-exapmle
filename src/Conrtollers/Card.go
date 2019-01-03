@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"time"
 
+	gov "github.com/asaskevich/govalidator"
 	"github.com/labstack/echo"
 	"gopkg.in/mgo.v2/bson"
 
@@ -26,10 +27,18 @@ func (h *Conrtollers) CreateCard(c echo.Context) error {
 		UpdatedAt: time.Now(),
 		Active:    true,
 	}
+
 	c.Bind(card)
 
-	err := h.DB.DB("CardsDB").C("Cards").Insert(card)
+	_, err := gov.ValidateStruct(card)
+	if err != nil {
+		fmt.Println("Validate error: ", err)
+		return c.JSON(http.StatusBadRequest, err.Error())
+	}
 
+	println("card: ", card.Type, card.Code)
+
+	err = h.DB.DB("CardsDB").C("Cards").Insert(card)
 	if err != nil {
 		fmt.Println("ERR: ", err)
 		return c.JSON(http.StatusInternalServerError, err)
@@ -63,13 +72,19 @@ func (h *Conrtollers) UpdateCard(c echo.Context) error {
 	card := &models.Card{}
 	c.Bind(card)
 
+	_, err := gov.ValidateStruct(card)
+	if err != nil {
+		fmt.Println("Validate error: ", err)
+		return c.JSON(http.StatusBadRequest, err.Error())
+	}
+
 	fmt.Println("card: ", card)
 
 	if !bson.IsObjectIdHex(id) {
 		return c.String(http.StatusBadRequest, "You passed incorrect id")
 	}
 
-	err := h.DB.DB("CardsDB").C("Cards").UpdateId(bson.ObjectIdHex(id), card)
+	err = h.DB.DB("CardsDB").C("Cards").UpdateId(bson.ObjectIdHex(id), card)
 
 	if err != nil {
 		fmt.Println("ERR: ", err)

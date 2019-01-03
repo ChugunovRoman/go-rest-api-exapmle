@@ -6,12 +6,12 @@
   "scripts": {
     "run": "better-npm-run run",
     "watch": "better-npm-run watch",
-    "build": "go build ./src/index.go",
+    "build": "go build ./src/index.go ./src/db.go",
     "test": "cd src; go test"
   },
   "betterScripts": {
     "run": {
-      "command": "go run ./src/index.go",
+      "command": "go run ./src/index.go ./src/db.go",
       "env": {
         "APP_PORT": "5000",
         "APP_ROUTE_PREFIX": "/api/v1",
